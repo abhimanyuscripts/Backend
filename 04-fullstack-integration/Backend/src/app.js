@@ -4,7 +4,6 @@ const noteModel = require("./model/notes.model")
 const app = express()
 app.use(express.json())
 
-
 app.post("/api/notes", async (req,res)=>{
     const {title,description} = req.body
 
