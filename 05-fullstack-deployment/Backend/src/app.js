@@ -3,6 +3,8 @@ const app = express()
 const noteModel = require("./models/notes.models")
 app.use(express.json())
 const cors = require("cors")
+const path = require("path")
+app.use(express.static( "./public"))// make js and css file public to the browser when different api is given like /ahfaiudhf 
 
 
 
@@ -47,5 +49,9 @@ app.patch("/api/notes/:id",async (req,res)=>{
         message:"note updated"
     })
 
+})
+
+app.use('*name',(req,res)=>{
+    res.sendFile(path.join(__dirname,"..","/public/index.html"))
 })
 module.exports = app

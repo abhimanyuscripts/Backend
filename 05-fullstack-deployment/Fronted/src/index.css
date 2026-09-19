@@ -30,4 +30,17 @@ html{
   gap: 2rem;
   padding-block: 1rem;
   padding-inline: 3rem;
+  
+}
+.button-container{
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.note-create-form{
+  display: flex;
+  gap: 1rem;
+  padding-inline: 3rem;
+  padding-block: 1rem;
 }
