@@ -13,7 +13,7 @@ function App() {
   },[])
   
   function fetchNotes(){
-  axios.get('http://localhost:3000/api/notes')
+  axios.get('https://backend-y1tb.onrender.com/api/notes')
   .then((res)=>{
     setnotes(res.data.notes)
   })
@@ -26,7 +26,7 @@ function App() {
 
    console.log(title.value,description.value)
 
-   axios.post("http://localhost:3000/api/notes",{
+   axios.post("https://backend-y1tb.onrender.com/api/notes",{
     title : title.value,
     description : description.value
    })
@@ -37,7 +37,7 @@ function App() {
  }
 
  function handleDeleteNote(id){
-  axios.delete("http://localhost:3000/api/notes/"+id)
+  axios.delete("https://backend-y1tb.onrender.com/api/notes/"+id)
   .then(res=>{
      console.log(res.data)
      fetchNotes()
@@ -51,7 +51,7 @@ function App() {
     "Enter new description",
     description
   )
-  axios.patch("http://localhost:3000/api/notes/"+id,{
+  axios.patch("https://backend-y1tb.onrender.com/api/notes/"+id,{
     description : newDescription
   })
   .then(res=>{
