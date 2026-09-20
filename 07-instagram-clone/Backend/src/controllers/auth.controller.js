@@ -1,5 +1,5 @@
 const userModel = require("../models/user.models")
-const crypto = require("crypto")
+const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 
@@ -31,7 +31,7 @@ const jwt = require("jsonwebtoken")
         )
     }
 
-    const hash = crypto.createHash('sha256').update(password).digest('hex')
+    const hash = await bcrypt.hash(password,10)
     const  user = await userModel.create({
         username,
         email,
@@ -76,9 +76,7 @@ const jwt = require("jsonwebtoken")
         })
     }
 
-
-    const hash = crypto.createHash('sha256').update(password).digest('hex')
-    const isPasswordvalid = hash==user.password
+    const isPasswordvalid = await bcrypt.compare(password,user.password)
     if(!isPasswordvalid){
         return res.status(401).json({
             message : "password is invalid"
