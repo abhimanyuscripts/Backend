@@ -19,6 +19,6 @@ const userSchema = new mongoose.Schema({
     profileImage:{type:String,default:"https://ik.imagekit.io/dwe8ayord/blank-profile-picture-973460_960_720.png"},
 })
 
-const userModel = mongoose.model("User",userSchema)
+const userModel = mongoose.model("users",userSchema)
 
 module.exports = userModel
