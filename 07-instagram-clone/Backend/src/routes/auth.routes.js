@@ -8,4 +8,4 @@ authRouter.post("/register",authController.registerController)
 authRouter.post("/login",authController.loginCOntroller)
 
 
-module.exports = authRouter  
+module.exports = authRouter

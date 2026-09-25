@@ -41,7 +41,8 @@ const jwt = require("jsonwebtoken")
     })
     
     const token = jwt.sign({
-        id:user._id
+        id:user._id,
+        username : user.username
     },process.env.JWT_SECRET,{expiresIn : '1d'})
 
     res.cookie("token",token)
@@ -84,7 +85,8 @@ const jwt = require("jsonwebtoken")
     }
 
     token = jwt.sign({
-        id : user._id
+        id : user._id,
+        username : user.username
     },process.env.JWT_SECRET,{expiresIn : '1d'})
 
     res.cookie("token",token)
