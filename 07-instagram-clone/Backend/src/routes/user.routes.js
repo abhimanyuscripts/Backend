@@ -20,4 +20,11 @@ userRouter.patch(
     identifyUser,
     userController.rejectFollowRequestController
 )
+
+userRouter.get(
+    "/get-me",
+    identifyUser,
+    userController.getMeController
+)
+
 module.exports = userRouter

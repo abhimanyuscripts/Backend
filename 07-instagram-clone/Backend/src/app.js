@@ -18,6 +18,7 @@ const userRouter = require("./routes/user.routes")
 //Use Routes 
 app.use("/api/auth", authRouter)
 app.use("/api/posts", postRouter)
+app.use("/api/users", userRouter)
 app.use("/api/follower", userRouter)
 
 

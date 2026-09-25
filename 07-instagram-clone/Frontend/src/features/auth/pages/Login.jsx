@@ -1,30 +1,47 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../auth.context.jsx'
 import '../auth.css'
 
 const Login = () => {
   const [identifier, setIdentifier] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+    setSuccess('')
 
-    axios.post(
-      'http://localhost:3000/api/auth/login',
-      {
-        username: identifier,
-        email: identifier,
-        password: password,
-      },
-      { withCredentials: true }
-    )
-      .then((res) => {
-        console.log('Login successful:', res.data)
+    const trimmedIdentifier = identifier.trim()
+    const trimmedPassword = password.trim()
+
+    if (!trimmedIdentifier || !trimmedPassword) {
+      setError('Please fill in both fields.')
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const data = await login({
+        username: trimmedIdentifier,
+        email: trimmedIdentifier,
+        password: trimmedPassword,
       })
-      .catch((err) => {
-        console.error('Login error:', err.response?.data?.message || err.message)
-      })
+
+      setSuccess(data.message || 'Logged in successfully!')
+      navigate('/')
+    } catch (err) {
+      const serverMessage = err.response?.data?.message || err.message || 'Login failed.'
+      setError(serverMessage)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -37,6 +54,9 @@ const Login = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="auth-form" noValidate>
+            {error && <div className="auth-feedback error">{error}</div>}
+            {success && <div className="auth-feedback success">{success}</div>}
+
             <div className="form-group">
               <label htmlFor="identifier" className="form-label">
                 Username or Email
@@ -71,8 +91,15 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit" className="auth-button">
-              Log In
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? (
+                <>
+                  <span className="spinner" aria-hidden="true"></span>
+                  <span>Logging in...</span>
+                </>
+              ) : (
+                'Log In'
+              )}
             </button>
           </form>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../auth.context.jsx'
 import '../auth.css'
 
 const Register = () => {
@@ -11,6 +11,11 @@ const Register = () => {
     bio: '',
     profileImage: '',
   })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
+  const { register } = useAuth()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -18,15 +23,50 @@ const Register = () => {
       ...prev,
       [name]: value,
     }))
+    if (error) setError('')
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    axios.post('/api/auth/register', formData, {
-      withCredentials: true,
-    })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err))
+    setError('')
+    setSuccess('')
+
+    const username = formData.username.trim()
+    const email = formData.email.trim()
+    const password = formData.password.trim()
+    const bio = formData.bio.trim()
+    const profileImage = formData.profileImage.trim()
+
+    if (!username || !email || !password) {
+      setError('Please fill in username, email, and password.')
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const payload = {
+        username,
+        email,
+        password,
+        ...(bio && { bio }),
+        ...(profileImage && { profileImage }),
+      }
+
+      const data = await register(payload)
+
+      setSuccess(data.message || 'Account created successfully! Redirecting to login...')
+      console.log('Registration Response:', data)
+
+      setTimeout(() => {
+        navigate('/login')
+      }, 1500)
+    } catch (err) {
+      const serverMessage = err.response?.data?.message || err.message || 'Registration failed.'
+      setError(serverMessage)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -39,6 +79,9 @@ const Register = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="auth-form" noValidate>
+            {error && <div className="auth-feedback error">{error}</div>}
+            {success && <div className="auth-feedback success">{success}</div>}
+
             <div className="form-group">
               <label htmlFor="username" className="form-label">
                 Username <span style={{ color: 'var(--error-text)' }}>*</span>
@@ -120,8 +163,15 @@ const Register = () => {
               />
             </div>
 
-            <button type="submit" className="auth-button">
-              Register
+            <button type="submit" className="auth-button" disabled={loading}>
+              {loading ? (
+                <>
+                  <span className="spinner" aria-hidden="true"></span>
+                  <span>Creating account...</span>
+                </>
+              ) : (
+                'Register'
+              )}
             </button>
           </form>
         </div>
