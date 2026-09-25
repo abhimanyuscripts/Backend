@@ -5,6 +5,8 @@ import Register from './features/auth/pages/Register'
 import ProtectedRoute from './layouts/ProtectedRoute'
 import RootLayout from './layouts/RootLayout'
 
+import ProfilePage from './features/users/pages/ProfilePage'
+
 export const routes = createBrowserRouter([
   // Public Authentication Routes
   {
@@ -52,12 +54,7 @@ export const routes = createBrowserRouter([
           },
           {
             path: '/profile',
-            element: (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <h2 style={{ marginBottom: '8px' }}>My Profile</h2>
-                <p style={{ color: 'var(--text-secondary)' }}>Profile information and posts</p>
-              </div>
-            ),
+            element: <ProfilePage />,
           },
         ],
       },
