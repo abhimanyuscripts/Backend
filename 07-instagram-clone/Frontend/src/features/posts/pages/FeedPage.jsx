@@ -4,6 +4,8 @@ import { getFeedPosts } from '../services/posts.api'
 import PostCard from '../components/PostCard'
 import '../posts.css'
 
+import { PostCardSkeleton } from '../../../components/ui/Skeleton'
+
 const FeedPage = () => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -27,8 +29,9 @@ const FeedPage = () => {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
-        <div className="spinner" style={{ width: '32px', height: '32px' }}></div>
+      <div className="feed-container">
+        <PostCardSkeleton />
+        <PostCardSkeleton />
       </div>
     )
   }

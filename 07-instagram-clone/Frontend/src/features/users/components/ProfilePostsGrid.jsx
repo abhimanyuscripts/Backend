@@ -1,10 +1,13 @@
 import React from 'react'
+import { GridPostSkeleton } from '../../../components/ui/Skeleton'
 
 const ProfilePostsGrid = ({ posts, loading }) => {
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: '40px 0' }}>
-        <div className="spinner" style={{ width: '28px', height: '28px' }}></div>
+      <div className="posts-grid">
+        <GridPostSkeleton />
+        <GridPostSkeleton />
+        <GridPostSkeleton />
       </div>
     )
   }
