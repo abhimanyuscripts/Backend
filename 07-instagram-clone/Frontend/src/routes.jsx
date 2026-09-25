@@ -6,6 +6,8 @@ import ProtectedRoute from './layouts/ProtectedRoute'
 import RootLayout from './layouts/RootLayout'
 
 import ProfilePage from './features/users/pages/ProfilePage'
+import FeedPage from './features/posts/pages/FeedPage'
+import CreatePostPage from './features/posts/pages/CreatePostPage'
 
 export const routes = createBrowserRouter([
   // Public Authentication Routes
@@ -27,21 +29,11 @@ export const routes = createBrowserRouter([
         children: [
           {
             path: '/',
-            element: (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <h2 style={{ marginBottom: '8px' }}>Home Feed</h2>
-                <p style={{ color: 'var(--text-secondary)' }}>Welcome to your feed!</p>
-              </div>
-            ),
+            element: <FeedPage />,
           },
           {
             path: '/create',
-            element: (
-              <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <h2 style={{ marginBottom: '8px' }}>Create Post</h2>
-                <p style={{ color: 'var(--text-secondary)' }}>Post creation area</p>
-              </div>
-            ),
+            element: <CreatePostPage />,
           },
           {
             path: '/requests',
