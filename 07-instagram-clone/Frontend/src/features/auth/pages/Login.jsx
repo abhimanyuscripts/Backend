@@ -1,24 +1,30 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import '../auth.css'
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    identifier: '',
-    password: '',
-  })
+  const [identifier, setIdentifier] = useState('')
+  const [password, setPassword] = useState('')
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
-
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault()
-    // UI-only for now; no API calls or backend integration
+
+    axios.post(
+      'http://localhost:3000/api/auth/login',
+      {
+        username: identifier,
+        email: identifier,
+        password: password,
+      },
+      { withCredentials: true }
+    )
+      .then((res) => {
+        console.log('Login successful:', res.data)
+      })
+      .catch((err) => {
+        console.error('Login error:', err.response?.data?.message || err.message)
+      })
   }
 
   return (
@@ -41,8 +47,8 @@ const Login = () => {
                 type="text"
                 className="form-input"
                 placeholder="Enter username or email"
-                value={formData.identifier}
-                onChange={handleChange}
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
                 autoComplete="username"
                 required
               />
@@ -58,8 +64,8 @@ const Login = () => {
                 type="password"
                 className="form-input"
                 placeholder="Enter password"
-                value={formData.password}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 required
               />

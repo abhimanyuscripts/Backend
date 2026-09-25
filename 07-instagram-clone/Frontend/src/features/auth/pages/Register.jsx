@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import '../auth.css'
 
 const Register = () => {
@@ -21,7 +22,11 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // UI-only for now; no API calls or backend integration
+    axios.post('/api/auth/register', formData, {
+      withCredentials: true,
+    })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err))
   }
 
   return (
