@@ -17,7 +17,9 @@ authRouter.post("/register",async (req,res)=>{
     }
     const hash = crypto.hash("md5").update(password).digest("hex")
     const user = await userModel.create({
-        email,password : hash ,name
+        email,
+        password : hash ,
+        name
     })
 
     const token =  jwt.sign(

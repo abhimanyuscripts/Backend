@@ -1,4 +1,5 @@
 const express = require("express");
+const noteModel = require("../../04-fullstack-integration/Backend/src/models/note.model");
 const app = express()
 app.use(express.json())
 
@@ -15,6 +16,16 @@ app.post("/notes",async (req,res)=>{
         note
     })
 })
+
+app.get("/notes",async(req,res)=>{
+    const notes = await noteModel.find()
+
+    res.status(200).json({
+        message : "Notes Fetched Successfully",
+        notes
+    })
+})
+
 
 
 module.exports = app;
