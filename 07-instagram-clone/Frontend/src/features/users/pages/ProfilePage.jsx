@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useAuth } from '../../auth/auth.context'
+import { useAuth } from '../../auth/auth.context.jsx'
 import { getMyPosts } from '../services/users.api'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfilePostsGrid from '../components/ProfilePostsGrid'

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createPost } from '../services/posts.api'
 import '../posts.css'
@@ -11,6 +11,12 @@ const CreatePostPage = () => {
   const [error, setError] = useState('')
   const fileInputRef = useRef(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl)
+    }
+  }, [previewUrl])
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]

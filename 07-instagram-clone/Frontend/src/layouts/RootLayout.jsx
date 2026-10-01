@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { useAuth } from '../features/auth/auth.context'
+import { useAuth } from '../features/auth/auth.context.jsx'
 import './layout.css'
 
 const RootLayout = () => {
