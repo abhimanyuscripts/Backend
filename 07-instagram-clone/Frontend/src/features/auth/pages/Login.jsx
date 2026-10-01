@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth.context.jsx'
 import '../auth.css'
 
@@ -9,8 +9,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
-  const { login } = useAuth()
+  const { login, user } = useAuth()
   const navigate = useNavigate()
+
+  if (user) return <Navigate to="/" replace />
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -18,9 +20,9 @@ const Login = () => {
     setSuccess('')
 
     const trimmedIdentifier = identifier.trim()
-    const trimmedPassword = password.trim()
+    const trimmedPassword = password
 
-    if (!trimmedIdentifier || !trimmedPassword) {
+    if (!trimmedIdentifier || !trimmedPassword.trim()) {
       setError('Please fill in both fields.')
       return
     }

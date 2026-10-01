@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { likePost } from '../services/posts.api'
-import { useAuth } from '../../auth/auth.context'
+import { useAuth } from '../../auth/auth.context.jsx'
 
 const PostCard = ({ post }) => {
   const { user } = useAuth()
@@ -55,7 +55,7 @@ const PostCard = ({ post }) => {
       <div className="post-card-content">
         {post.caption && (
           <p className="post-caption">
-            <strong>@{authorName}</strong>
+            <strong>@{authorName}</strong>{' '}
             {post.caption}
           </p>
         )}

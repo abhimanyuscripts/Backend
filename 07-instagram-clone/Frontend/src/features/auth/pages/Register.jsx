@@ -33,11 +33,11 @@ const Register = () => {
 
     const username = formData.username.trim()
     const email = formData.email.trim()
-    const password = formData.password.trim()
+    const password = formData.password
     const bio = formData.bio.trim()
     const profileImage = formData.profileImage.trim()
 
-    if (!username || !email || !password) {
+    if (!username || !email || !password.trim()) {
       setError('Please fill in username, email, and password.')
       return
     }
@@ -55,12 +55,8 @@ const Register = () => {
 
       const data = await register(payload)
 
-      setSuccess(data.message || 'Account created successfully! Redirecting to login...')
-      console.log('Registration Response:', data)
-
-      setTimeout(() => {
-        navigate('/login')
-      }, 1500)
+      setSuccess(data.message || 'Account created successfully!')
+      navigate('/')
     } catch (err) {
       const serverMessage = err.response?.data?.message || err.message || 'Registration failed.'
       setError(serverMessage)
