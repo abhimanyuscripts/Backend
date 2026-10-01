@@ -1,0 +1,6 @@
+# Applies to every project in this repo
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
