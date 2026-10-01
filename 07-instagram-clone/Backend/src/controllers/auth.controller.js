@@ -45,7 +45,7 @@ const jwt = require("jsonwebtoken")
         username : user.username
     },process.env.JWT_SECRET,{expiresIn : '1d'})
 
-    res.cookie("token",token)
+    res.cookie("token",token,{httpOnly:true,secure:process.env.NODE_ENV === "production"})
 
     res.status(201).json({
         message : 'user registered',
@@ -89,7 +89,7 @@ const jwt = require("jsonwebtoken")
         username : user.username
     },process.env.JWT_SECRET,{expiresIn : '1d'})
 
-    res.cookie("token",token)
+    res.cookie("token",token,{httpOnly:true,secure:process.env.NODE_ENV === "production"})
 
     res.status(200).json({
         message : "USer logged in ",
