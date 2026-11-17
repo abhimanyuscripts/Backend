@@ -49,8 +49,8 @@ const Login = () => {
       <div className="auth-wrapper">
         <div className="auth-card">
           <div className="auth-header">
-            <h1 className="auth-brand">Instagram</h1>
-            <p className="auth-subtitle">Sign in to connect with friends and the world.</p>
+            <h1 className="auth-brand">Pixora</h1>
+            <p className="auth-subtitle">Welcome back. Sign in to see what your circle is sharing.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="auth-form" noValidate>

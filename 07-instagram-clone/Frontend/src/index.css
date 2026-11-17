@@ -5,13 +5,13 @@
   --bg-secondary: #121216;
   --bg-input: #1b1b22;
   --border-color: #272732;
-  --border-focus: #4f46e5;
+  --border-focus: #0d9488;
   --text-primary: #f4f4f6;
   --text-secondary: #9494a8;
   --text-muted: #656578;
-  --accent-gradient: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%);
-  --accent-primary: #6366f1;
-  --accent-hover: #4f46e5;
+  --accent-gradient: linear-gradient(135deg, #2dd4bf 0%, #10b981 100%);
+  --accent-primary: #14b8a6;
+  --accent-hover: #0d9488;
   --error-bg: rgba(239, 68, 68, 0.12);
   --error-text: #f87171;
   --error-border: rgba(239, 68, 68, 0.3);

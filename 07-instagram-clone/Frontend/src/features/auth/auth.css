@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+  background: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.08) 0%, transparent 60%),
               var(--bg-primary);
 }
 
@@ -95,7 +95,7 @@
 
 .form-input:focus {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
 }
 
 .form-textarea {
@@ -175,7 +175,7 @@
 
 .auth-link:hover {
   text-decoration: underline;
-  color: #818cf8;
+  color: #5eead4;
 }
 
 .spinner {

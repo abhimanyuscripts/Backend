@@ -17,7 +17,7 @@ const RootLayout = () => {
       <aside className="sidebar">
         <div>
           <div className="sidebar-header">
-            <span className="sidebar-logo">Instagram</span>
+            <span className="sidebar-logo">Pixora</span>
           </div>
 
           <nav className="sidebar-nav">

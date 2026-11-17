@@ -74,8 +74,8 @@ const Register = () => {
       <div className="auth-wrapper">
         <div className="auth-card">
           <div className="auth-header">
-            <h1 className="auth-brand">Instagram</h1>
-            <p className="auth-subtitle">Sign up to see photos and videos from your friends.</p>
+            <h1 className="auth-brand">Pixora</h1>
+            <p className="auth-subtitle">Create an account and start sharing your moments.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="auth-form" noValidate>

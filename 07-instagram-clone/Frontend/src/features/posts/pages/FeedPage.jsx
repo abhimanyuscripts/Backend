@@ -48,7 +48,7 @@ const FeedPage = () => {
     return (
       <div className="empty-posts-container" style={{ paddingTop: '80px' }}>
         <span className="empty-icon">✨</span>
-        <h3>Welcome to Instagram</h3>
+        <h3>Welcome to Pixora</h3>
         <p>No posts in your feed yet.</p>
         <Link to="/create" className="auth-button" style={{ marginTop: '12px', padding: '10px 24px' }}>
           Create First Post
